@@ -1,0 +1,8 @@
+/* MyTasksLanding — real CSS media query here since this project has no Tailwind
+   build, so the summary tiles can't lean on a Tailwind grid-cols-* utility class. */
+
+.mta-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}

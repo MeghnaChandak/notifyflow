@@ -1,0 +1,19 @@
+# MySQL for local development. The API connects to it with the DB_* values in backend/.env.
+# Set MYSQL_PASSWORD in your shell (or a .env next to this file) before starting; there is no default.
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?set MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: notifyflow
+      MYSQL_USER: notifyflow
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?set MYSQL_PASSWORD}
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - notifyflow-db:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+
+volumes:
+  notifyflow-db:
